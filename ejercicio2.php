@@ -1,58 +1,36 @@
 <?php
-
-class Transporte {
-    protected int $ruedas; 
-    protected int $capacidad; 
-    public function __construct(int $ruedas, int $capacidad)
-    {
-            $this->ruedas= $ruedas; 
-            $this->capacidad= $capacidad; 
-    }
-
-    public function getInfo() : string {
-            return "El transporte tiene " . $this->ruedas . "ruedas y unca capacidad de ". $this->capacidad . "personas"; 
-    }
-
-    public function getRuedas() : int {
-            return $this->ruedas;
-
-    }
-}
-
-class Bicicleta extends Transporte {
-
-        public function getInfo() : string {
-            return "el transporte tiene " . $this->ruedas . "ruedas y una capacidad de ". $this->capacidad . " personas y NO GASTA GASOLINA";
+    class Producto {
+        #definicion de atributos
+        protected string $nombre;
+        public int $precio;
+        public bool $disponible;
+        #metodo contructor, se ejecuta al efectuar la intancia
+        public function __construct(string $nombre, int $precio, bool $disponible)
+        {
+             #se les da valor a los atributos con los parametros que recibe el metodo consturctor
+             $this->nombre = $nombre;
+             $this->precio = $precio;
+             $this->disponible = $disponible;           
         }
-}
 
-class Automovil extends Transporte {
+        //definicion de metodos
+        public function mostrarProducto() {
+            echo "El producto es: " . $this->nombre . "y su precio es de: ". $this->precio;
+        }
+        //metodo getter para la propiedad protegida de nombre
+        public function getNombre() : string {
+            return $this->nombre;
+        }
+        //metodo setter para propiedad protegida de nombre
+        public function setNombre(string $nombre){
+            $this->nombre = $nombre;
+        }
 
-    protected string $transmision; 
-    public function __construct(int $ruedas, int $capacidad, string $transmision)
-    {
-        $this->ruedas = $ruedas;
-        $this->capacidad = $capacidad;
-        $this->transmision = $transmision; 
     }
-
-    public function getTransmision() : string {
-        return $this->transmision;
-    }
-    
-}
-
-
-// INSTANCIA DEL PRIMER OBJETO
-$bicicleta = new Bicicleta (2, 1); 
-// EJECUCION DEL METODO HEREDADO DE TRANSPORTE
-echo $bicicleta->getInfo(); 
-echo $bicicleta->getRuedas(); 
-
-echo "<hr>"; 
-
-//INSTANCIA DEL SEGUNDO OBJETO, CON EL ATRIBUTO ADICIONAL
-$auto = new Automovil(4, 4, 'Manual');
-
-
-?>
+    $producto = new Producto('tablet', 200, true);
+   // $producto->mostrarProducto();
+    //echo $producto->nombre;//produce error
+    echo $producto->getNombre();//obtiene el nombre
+    $producto->setNombre('nuevo nombre');//setea el nombre
+    echo $producto->getNombre();//obtiene nombre
+    ?>
